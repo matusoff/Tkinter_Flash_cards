@@ -9,9 +9,9 @@ data_dict = {}
 
 try:
     #we provide the path for the file with words that user doesn't know and wants to learn
-    data = pd.read_csv(r'PROJECTS\100days_of_code\TKinter\Flash_cards\data\words_to_learn.csv')
+    data = pd.read_csv(r'file path \data\words_to_learn.csv')
 except FileNotFoundError:
-    original_data = pd.read_csv(r'PROJECTS\100days_of_code\TKinter\Flash_cards\data\french_words.csv')
+    original_data = pd.read_csv(r'file path \data\french_words.csv')
     data_dict = original_data.to_dict(orient="records")
 else:
     data_dict = data.to_dict(orient="records")
@@ -61,7 +61,7 @@ def flip_card():
 def words_to_learn():
     data_dict.remove(current_card)
     new_data = pd.DataFrame(data_dict)
-    new_data.to_csv(r'PROJECTS\100days_of_code\TKinter\Flash_cards\data\words_to_learn.csv', index=False)
+    new_data.to_csv(r'file path \data\words_to_learn.csv', index=False)
     next_card()
      
 
@@ -76,8 +76,8 @@ window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 flip_timer = window.after(3000, func=flip_card)
 
 canvas = Canvas(width=800, heigh=526, bg=BACKGROUND_COLOR, highlightthickness=0)
-card_front = PhotoImage(file=r"PROJECTS\100days_of_code\TKinter\Flash_cards\images\card_front.png")
-card_back = PhotoImage(file=r"PROJECTS\100days_of_code\TKinter\Flash_cards\images\card_back.png")
+card_front = PhotoImage(file=r'file path \images\card_front.png')
+card_back = PhotoImage(file=r'file path \images\card_back.png')
 canvas.grid(column=0, row=0, columnspan=2)
 
 #to place image in the center
@@ -85,10 +85,10 @@ card_background = canvas.create_image(400,263, image=card_front)
 card_title = canvas.create_text(400,150,text="Title", fill="black", font=("Arial", 35, "italic"))
 card_word = canvas.create_text(400,263,text="word", fill="black", font=("Arial", 50,"bold"))
 
-image_wrong = PhotoImage(file=r"PROJECTS\100days_of_code\TKinter\Flash_cards\images\wrong.png")
+image_wrong = PhotoImage(file=r'file path \images\wrong.png')
 button_wrong = Button(image=image_wrong, highlightthickness=0, command=next_card)
 button_wrong.grid(column=0, row=2)
-image_right = PhotoImage(file=r"PROJECTS\100days_of_code\TKinter\Flash_cards\images\right.png")
+image_right = PhotoImage(file=r'file path \images\right.png')
 button_right = Button(image=image_right, highlightthickness=0, command=words_to_learn)
 button_right.grid(column=1, row=2)
 
